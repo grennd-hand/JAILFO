@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #f97316;
+  --primary-dark: #c2410c;
+  --primary-light: #ffedd5;
+  --dark: #18181b;
+  --dark-light: #27272a;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+html {
+  @apply scroll-smooth;
+  -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+  touch-action: manipulation; /* 提升触摸体验 */
+  height: -webkit-fill-available; /* 修复iOS全高问题 */
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.015em;
+  min-height: 100vh;
+  min-height: -webkit-fill-available; /* 修复iOS全高问题 */
+  overflow-x: hidden; /* 防止水平滚动 */
+}
+
+/* 防止弹性盒在iOS Safari上的问题 */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-wide;
+  }
+  
+  /* 滚动条样式 */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+  
+  /* 修复iOS表单元素样式 */
+  input, 
+  textarea, 
+  button, 
+  select {
+    @apply appearance-none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
+@layer components {
+  /* 定义常用组件样式 */
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900;
+    /* 触摸友好的点击区域 */
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  .btn-primary {
+    @apply btn bg-orange-500 hover:bg-orange-600 text-white focus:ring-orange-500/50;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-700 hover:bg-gray-600 text-white focus:ring-gray-700/50;
+  }
+  
+  .btn-outline {
+    @apply btn border border-orange-500 text-orange-400 hover:bg-orange-500/10 focus:ring-orange-500/50;
+  }
+  
+  .input {
+    @apply bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 
+    focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent
+    transition duration-200;
+  }
+  
+  .card {
+    @apply bg-gray-800 rounded-lg p-5 border border-gray-700/50 shadow-lg;
+  }
+  
+  .prison-text {
+    @apply font-['JetBrains_Mono'] tracking-wider;
+  }
+  
+  /* 移动优先响应式容器 */
+  .container-responsive {
+    @apply w-full px-4 mx-auto;
+    max-width: 100%;
+    
+    @screen sm {
+      max-width: 540px;
+    }
+    
+    @screen md {
+      max-width: 720px;
+    }
+    
+    @screen lg {
+      max-width: 960px;
+    }
+    
+    @screen xl {
+      max-width: 1140px;
+    }
+  }
+}
+
+/* 页面切换动画 */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* 全局动画关键帧 */
+@keyframes floatAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: floatAnimation 3s ease-in-out infinite;
+}
+
+/* 媒体查询优化 */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* 移动端稍微缩小基础字号 */
+  }
+  
+  .btn, .input {
+    @apply text-sm; /* 移动端按钮和输入框字体稍小 */
+  }
+}
+
+/* 安全区域适配（针对刘海屏） */
+@supports (padding: max(0px)) {
+  .safe-padding-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-padding-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+}
