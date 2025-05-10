@@ -1,6 +1,5 @@
 // 评论API（Serverless）
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -19,7 +18,7 @@ const CommentSchema = new mongoose.Schema({
 
 const Comment = mongoose.models.Comment || mongoose.model('Comment', CommentSchema)
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async (req, res) => {
   await global._mongoose
 
   if (req.method === 'GET') {
