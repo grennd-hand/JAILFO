@@ -17,12 +17,12 @@ let posts = [
 ];
 
 // 获取帖子列表
-app.get('/comments', (req, res) => {
+app.get('/api/comments', (req, res) => {
   res.json(posts);
 });
 
 // 创建新帖子
-app.post('/comments', (req, res) => {
+app.post('/api/comments', (req, res) => {
   const { content, nickname } = req.body;
   const post = {
     _id: Date.now().toString(),
@@ -36,14 +36,14 @@ app.post('/comments', (req, res) => {
 });
 
 // 获取评论列表
-app.get('/comments/:postId', (req, res) => {
+app.get('/api/comments/:postId', (req, res) => {
   const post = posts.find(p => p._id === req.params.postId);
   if (!post) return res.status(404).json({ message: '帖子不存在' });
   res.json(post.comments);
 });
 
 // 添加评论
-app.post('/comments/:postId', (req, res) => {
+app.post('/api/comments/:postId', (req, res) => {
   const { content, nickname } = req.body;
   const post = posts.find(p => p._id === req.params.postId);
   if (!post) return res.status(404).json({ message: '帖子不存在' });

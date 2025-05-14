@@ -185,3 +185,101 @@ body {
     padding-top: max(0.5rem, env(safe-area-inset-top));
   }
 }
+
+.moveable-control {
+  display: none !important;
+}
+.moveable-line {
+  border-color: rgba(255, 214, 0, 0.7) !important;
+  border-style: dashed !important;
+  border-width: 2px !important;
+  box-shadow: 0 0 8px 2px rgba(255, 214, 0, 0.15);
+  border-radius: 16px !important;
+  opacity: 0 !important;
+}
+.moveable-yellow .moveable-direction.moveable-nw,
+.moveable-yellow .moveable-direction.moveable-ne,
+.moveable-yellow .moveable-direction.moveable-sw,
+.moveable-yellow .moveable-direction.moveable-se {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: #ffd600 !important;
+  border-radius: 50% !important;
+  border: 2.5px solid #fff !important;
+  box-shadow: 0 0 8px #ffd60080;
+  position: absolute;
+  z-index: 10;
+  transition: box-shadow 0.2s, border 0.2s;
+  opacity: 1 !important;
+}
+.moveable-yellow .moveable-direction.moveable-nw:hover,
+.moveable-yellow .moveable-direction.moveable-ne:hover,
+.moveable-yellow .moveable-direction.moveable-sw:hover,
+.moveable-yellow .moveable-direction.moveable-se:hover {
+  box-shadow: 0 0 16px #ffd600cc;
+  border: 2.5px solid #ffd600;
+}
+.moveable-yellow .moveable-direction:not(.moveable-nw):not(.moveable-ne):not(.moveable-sw):not(.moveable-se) {
+  display: none !important;
+}
+/* 加减按钮样式 */
+.moveable-plus, .moveable-minus {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ffd600;
+  color: #ffd600;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #ffd60033;
+  cursor: pointer;
+  z-index: 20;
+  transition: background 0.2s, color 0.2s;
+}
+.moveable-plus:hover, .moveable-minus:hover {
+  background: #ffd600;
+  color: #fff;
+}
+.moveable-rotation-line {
+  display: none !important;
+}
+.moveable-rotation {
+  display: none !important;
+}
+
+.move-btn {
+  width: 24px;
+  height: 24px;
+  background: #222;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: none;
+  cursor: pointer;
+  margin: 0 2px;
+  transition: background 0.2s;
+}
+.move-btn:hover {
+  background: #111;
+}
+
+.moveable-control-box {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: none !important;
+  opacity: 0 !important;
+}
+.moveable-direction {
+  opacity: 0 !important;
+}

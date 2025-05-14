@@ -55,16 +55,14 @@ const Forum = () => {
                 className="overflow-hidden"
               >
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 mb-8 border border-gray-700/50 shadow-xl">
-                  <PostForm onSuccess={(content) => {
-                    handleNewPost(content);
-                  }} />
+                  <PostForm onSuccess={handleNewPost} />
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
           <div className="space-y-6">
-            <PostList onNewPost={handleNewPost} />
+            <PostList />
           </div>
         </motion.div>
       </div>

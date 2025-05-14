@@ -137,7 +137,7 @@ const Home = () => {
                 className="w-full sm:w-auto btn-outline text-lg py-3 px-6 sm:px-8 rounded-lg shadow-lg"
                 onClick={() => navigate('/crimes')}
               >
-                查看罪名墙
+                领取亏损身份令牌
               </motion.button>
             </motion.div>
           )}

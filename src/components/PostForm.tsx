@@ -19,8 +19,10 @@ const PostForm: React.FC<PostFormProps> = ({ postId, onSuccess }) => {
     
     setLoading(true);
     try {
+      const payload: any = { content, nickname };
+      if (postId) payload.postId = postId;
       const [response] = await Promise.all([
-        api.post('/comments', { postId, content, nickname }),
+        api.post('/comments', payload),
         new Promise(resolve => setTimeout(resolve, 1000))
       ]);
       
